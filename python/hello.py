@@ -1,5 +1,6 @@
 def greet():
-    print("what")
+    if 2%1 == 0:
+        print("what")
     return "Hello, Python!"
 
 if __name__ == "__main__":
