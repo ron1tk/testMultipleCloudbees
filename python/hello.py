@@ -22,6 +22,9 @@ def five():
 def six():
     return "six"
 
+def seven():
+    return "seven"
+
 if __name__ == "__main__":
     for i in range(5):
         print(greet())
@@ -29,4 +32,4 @@ if __name__ == "__main__":
         print(hi())
     print(four())
     print(five())
-    print(six())
+    print(seven())
