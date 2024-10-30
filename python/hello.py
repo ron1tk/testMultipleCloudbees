@@ -16,6 +16,9 @@ def two():
 def four():
     return "four"
 
+def five():
+    return "four"
+
 
 if __name__ == "__main__":
     for i in range(5):
@@ -23,3 +26,4 @@ if __name__ == "__main__":
     for i in range(2):
         print(hi())
     print(four())
+    print(five())

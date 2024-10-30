@@ -172,6 +172,11 @@ Generate only the test code without any explanations."""
         except Exception as e:
             logging.error(f"Error saving test cases to {test_file}: {e}")
 
+        if test_file.exists():
+            logging.info(f"File {test_file} exists with size {test_file.stat().st_size} bytes.")
+        else:
+            logging.error(f"File {test_file} was not created.")
+
     def run(self):
         """Main execution method."""
         changed_files = self.get_changed_files()
