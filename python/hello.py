@@ -6,6 +6,9 @@ def hi():
     return "hey"
 
 
+def three():
+    return "three"
+
 
 
 if __name__ == "__main__":
