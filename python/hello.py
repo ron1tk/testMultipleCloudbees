@@ -2,4 +2,5 @@ def greet():
     return "Hello, Python!"
 
 if __name__ == "__main__":
-    print(greet())
+    for i in range(5):
+        print(greet())
