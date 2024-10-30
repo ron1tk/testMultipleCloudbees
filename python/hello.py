@@ -9,6 +9,9 @@ def hi():
 def three():
     return "three"
 
+def three():
+    return "two"
+
 
 
 if __name__ == "__main__":
