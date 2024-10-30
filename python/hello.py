@@ -9,9 +9,12 @@ def hi():
 def three():
     return "three"
 
-def three():
+def two():
     return "two"
 
+
+def four():
+    return "four"
 
 
 if __name__ == "__main__":
@@ -19,3 +22,4 @@ if __name__ == "__main__":
         print(greet())
     for i in range(2):
         print(hi())
+    print(four())
