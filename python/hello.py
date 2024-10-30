@@ -11,4 +11,5 @@ def hi():
 if __name__ == "__main__":
     for i in range(5):
         print(greet())
-    print(hi())
+    for i in range(2):
+        print(hi())
