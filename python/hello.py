@@ -25,6 +25,9 @@ def six():
 def seven():
     return "seven"
 
+def eight():
+    return "eight"
+
 if __name__ == "__main__":
     for i in range(5):
         print(greet())
