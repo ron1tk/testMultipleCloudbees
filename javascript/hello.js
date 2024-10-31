@@ -21,6 +21,10 @@ function three() {
 function four() {
     console.log("three, JavaScript!");
 }
+
+function five() {
+    console.log("five, JavaScript!");
+}
 three();
 sup();
 hey();

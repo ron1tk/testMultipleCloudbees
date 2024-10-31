@@ -45,5 +45,6 @@ def test_thirteen_fourteen_fifteen_loops():
     assert thirteen() == "13"
     assert fourteen() == "14"
     assert fifteen() == "15"
-```
+"""
 This test suite covers all the functions in the provided code, testing both the normal cases and specific behavior (like the print side effect in `greet`). It uses parameterization to efficiently test functions that should simply return a string, ensuring code coverage. The use of `patch` from `unittest.mock` is demonstrated for testing the print side effect in `greet`, adhering to the requirement for mocking where appropriate.
+"""

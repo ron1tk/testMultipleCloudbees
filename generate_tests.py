@@ -86,7 +86,7 @@ Code to test:
 
 {code_content}
 
-Generate only the test code without any explanations."""
+Generate only the test code without any explanations or notes."""
 
         logging.info(f"Created prompt for {language} using {framework}. Length: {len(prompt)} characters")
         return prompt

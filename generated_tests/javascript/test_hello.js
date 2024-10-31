@@ -58,5 +58,5 @@ describe('Testing greeting functions', () => {
     });
   });
 });
-```
+'''
 Note: While the provided tests cover the example code's functionality, they operate under the assumption that these functions could potentially be refactored to include error handling or different behavior that might warrant more complex testing scenarios, including error cases.
