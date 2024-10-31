@@ -119,7 +119,7 @@ Generate only the test code without any explanations or notes."""
                 'https://api.openai.com/v1/chat/completions',
                 headers=headers,
                 json=data,
-                timeout=30
+                timeout=60
             )
             response.raise_for_status()
             generated_text = response.json()['choices'][0]['message']['content']
@@ -152,7 +152,7 @@ Generate only the test code without any explanations or notes."""
 
     def save_test_cases(self, file_name: str, test_cases: str, language: str):
         """Save generated test cases to appropriate directory structure."""
-        # Create tests directory if it doesn't exist
+        # Ensure the tests directory exists
         tests_dir = Path('generated_tests')
         tests_dir.mkdir(exist_ok=True)
 
@@ -160,13 +160,18 @@ Generate only the test code without any explanations or notes."""
         lang_dir = tests_dir / language.lower()
         lang_dir.mkdir(exist_ok=True)
 
-        # Generate test file name
+        # Check if the file name already begins with 'test_', if not, prepend it
         base_name = Path(file_name).stem
-        extension = '.py' if language == 'Python' else Path(file_name).suffix
-        test_file = lang_dir / f"test_{base_name}{extension}"
+        if not base_name.startswith("test_"):
+            base_name = f"test_{base_name}"
+        extension = '.js' if language == 'JavaScript' else Path(file_name).suffix
+        test_file = lang_dir / f"{base_name}{extension}"
+
+        # Decide the mode - 'a' for append, 'w' for overwrite
+        file_mode = 'w'  # Change to 'a' if you want to append to existing tests
 
         try:
-            with open(test_file, 'w', encoding='utf-8') as f:
+            with open(test_file, file_mode, encoding='utf-8') as f:
                 f.write(test_cases)
             logging.info(f"Test cases saved to {test_file}")
         except Exception as e:
@@ -176,6 +181,7 @@ Generate only the test code without any explanations or notes."""
             logging.info(f"File {test_file} exists with size {test_file.stat().st_size} bytes.")
         else:
             logging.error(f"File {test_file} was not created.")
+
 
     def run(self):
         """Main execution method."""

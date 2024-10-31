@@ -56,6 +56,14 @@ def fifteen():
 def sixteen():
     for i in range(14):
         return "15"
+    
+def seventeen():
+    for i in range(14):
+        return "15"
+    
+def righteen():
+    for i in range(14):
+        return "18"
 if __name__ == "__main__":
     for i in range(5):
         print(greet())
