@@ -28,6 +28,8 @@ def seven():
 def eight():
     return "eight"
 
+def nine():
+    return "nine"
 if __name__ == "__main__":
     for i in range(5):
         print(greet())
