@@ -3,21 +3,28 @@
 #include <iostream>
 #include <sstream>
 
-// Mocking std::cout
+using ::testing::_;
+using ::testing::Invoke;
+
+// Mock class for std::cout
 class MockCout {
 public:
     MOCK_METHOD(void, Output, (const std::string&));
 };
 
-MockCout mockCout;
+MockCout* mockCoutPtr;
 std::streambuf* oldCoutStreamBuf;
 std::ostringstream strCout;
 
 void CoutReplacement(const std::string& s) {
-    mockCout.Output(s);
+    if (mockCoutPtr) {
+        mockCoutPtr->Output(s);
+    } else {
+        std::cout << s; // Fallback to the actual cout
+    }
 }
 
-// Redirect std::cout to our stringstream
+// Redirect std::cout to our stringstream or mock
 void SetUpCoutRedirection() {
     oldCoutStreamBuf = std::cout.rdbuf();
     std::cout.rdbuf(strCout.rdbuf());
@@ -36,12 +43,17 @@ void greet() {
 // Google Test fixture for setting up cout redirection
 class GreetTest : public ::testing::Test {
 protected:
+    MockCout mockCout;
+
     void SetUp() override {
         SetUpCoutRedirection();
+        mockCoutPtr = &mockCout;
+        ON_CALL(mockCout, Output(_)).WillByDefault(Invoke(CoutReplacement));
     }
 
     void TearDown() override {
         TearDownCoutRedirection();
+        mockCoutPtr = nullptr;
     }
 };
 
@@ -69,12 +81,26 @@ TEST_F(GreetTest, CanRestoreCout) {
     ASSERT_EQ(strCout.str(), expectedOutput);
 }
 
+// Additional Tests
+
+// Testing greet() without mocking to verify actual output
+TEST(GreetTestNoMock, VerifyActualOutput) {
+    // Arrange
+    std::ostringstream localStrCout;
+    std::streambuf* oldCoutBuf = std::cout.rdbuf(localStrCout.rdbuf());
+
+    // Act
+    greet();
+
+    // Restore std::cout
+    std::cout.rdbuf(oldCoutBuf);
+
+    // Assert
+    ASSERT_EQ(localStrCout.str(), "Hellooooo, C++!\n");
+}
+
 int main(int argc, char** argv) {
     ::testing::InitGoogleTest(&argc, argv);
     ::testing::InitGoogleMock(&argc, argv);
-
     return RUN_ALL_TESTS();
 }
-```
-
-This test code includes a setup for mocking `std::cout` to ensure that `greet()` outputs the correct string. It uses Google Test and Google Mock for mocking, following best practices for setup and teardown to ensure that changes to `std::cout` are scoped to each test case, preventing side effects across tests. The tests cover the basic functionality of `greet()` as well as the ability to restore `std::cout` after redirection.
