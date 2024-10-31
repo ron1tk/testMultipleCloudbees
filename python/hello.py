@@ -30,6 +30,10 @@ def eight():
 
 def nine():
     return "nine"
+
+
+def ten():
+    return "ten"
 if __name__ == "__main__":
     for i in range(5):
         print(greet())
