@@ -37,6 +37,9 @@ def ten():
 
 def eleven():
     return "eleven"
+
+def twelve():
+    return "12"
 if __name__ == "__main__":
     for i in range(5):
         print(greet())

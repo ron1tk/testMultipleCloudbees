@@ -5,5 +5,10 @@ function greet() {
 function hi() {
     console.log("hi, JavaScript!");
 }
+
+function hey() {
+    console.log("hey, JavaScript!");
+}
+hey();
 hi();
 greet();
