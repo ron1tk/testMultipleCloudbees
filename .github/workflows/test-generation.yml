@@ -81,7 +81,7 @@ jobs:
         run: |
           if [ -n "$(git status --porcelain)" ]; then
             git checkout -b ${{ env.BRANCH_NAME }}
-            git add tests/
+            git add generated_tests/
             git commit -m "Add generated test cases for recent changes"
             git push origin ${{ env.BRANCH_NAME }}
             echo "CHANGES_PUSHED=1" >> $GITHUB_ENV

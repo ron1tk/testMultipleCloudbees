@@ -17,6 +17,10 @@ function sup() {
 function three() {
     console.log("three, JavaScript!");
 }
+
+function four() {
+    console.log("three, JavaScript!");
+}
 three();
 sup();
 hey();
