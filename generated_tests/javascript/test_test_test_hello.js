@@ -1,17 +1,15 @@
 const { jest } = require('@jest/globals');
-
-// Assuming the implementation of the functions is provided elsewhere
 const { greet, hi, hey, sup, three, four, five } = require('./greetingFunctions');
 
 describe('Test greeting functions for correct console output', () => {
-    // Mock console.log before each test
+    let consoleSpy;
+
     beforeEach(() => {
-        jest.spyOn(console, 'log').mockImplementation(() => {});
+        consoleSpy = jest.spyOn(console, 'log').mockImplementation(() => {});
     });
 
-    // Restore the original console.log after each test
     afterEach(() => {
-        console.log.mockRestore();
+        consoleSpy.mockRestore();
     });
 
     test('greet() should log "Hello, JavaScript!"', () => {
@@ -39,9 +37,14 @@ describe('Test greeting functions for correct console output', () => {
         expect(console.log).toHaveBeenCalledWith("three, JavaScript!");
     });
 
-    test('four() should incorrectly log "three, JavaScript!" instead of "four, JavaScript!"', () => {
+    test('four() should log "four, JavaScript!"', () => {
         four();
-        expect(console.log).toHaveBeenCalledWith("three, JavaScript!");
+        expect(console.log).toHaveBeenCalledWith("four, JavaScript!");
+    });
+
+    test('four() should not log "three, JavaScript!" to demonstrate a failed test scenario', () => {
+        four();
+        expect(console.log).not.toHaveBeenCalledWith("three, JavaScript!");
     });
 
     test('five() should log "five, JavaScript!"', () => {
