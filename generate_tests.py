@@ -153,7 +153,7 @@ Generate only the test code without any explanations."""
     def save_test_cases(self, file_name: str, test_cases: str, language: str):
         """Save generated test cases to appropriate directory structure."""
         # Create tests directory if it doesn't exist
-        tests_dir = Path('tests')
+        tests_dir = Path('generated_tests')
         tests_dir.mkdir(exist_ok=True)
 
         # Create language-specific subdirectory

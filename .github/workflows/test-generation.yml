@@ -37,7 +37,7 @@ jobs:
           pip install requests pytest
 
       - name: Create tests directory
-        run: mkdir -p tests
+        run: mkdir -p generated_tests
 
       - name: Detect changed files
         id: changed-files

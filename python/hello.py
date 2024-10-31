@@ -40,6 +40,10 @@ def eleven():
 
 def twelve():
     return "12"
+
+def thirteen():
+    for i in range(13):
+        return "13"
 if __name__ == "__main__":
     for i in range(5):
         print(greet())
