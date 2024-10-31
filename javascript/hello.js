@@ -14,6 +14,10 @@ function sup() {
     console.log("sup, JavaScript!");
 }
 
+function three() {
+    console.log("three, JavaScript!");
+}
+three();
 sup();
 hey();
 hi();

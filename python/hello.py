@@ -44,6 +44,11 @@ def twelve():
 def thirteen():
     for i in range(13):
         return "13"
+    
+
+def fourteen():
+    for i in range(14):
+        return "14"
 if __name__ == "__main__":
     for i in range(5):
         print(greet())
